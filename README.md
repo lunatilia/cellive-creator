@@ -20,6 +20,9 @@
 # ./c8live-builder centos-8-live-gnome.cfg 
 ```
 
+## イメージ
+- [イメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.0-20191226)
+
 ## ライセンス
 
 [GNU GPLv2](https://github.com/lunatilia/centos-8-livemedia-japanese/blob/master/LICENSE) (The CentOS Projectのデフォルトライセンス)
