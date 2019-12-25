@@ -1,0 +1,8 @@
+*.iso
+*.img
+logs/
+tmp/
+results/
+anaconda/
+live-tmpl/
+repos/
