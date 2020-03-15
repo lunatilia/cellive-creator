@@ -7,7 +7,7 @@ if [ $# -ne 1 ]; then
 fi
 
 # check require packages
-reqpkgs="lorax-lmc-novirt lorax-templates-rhel patch"
+reqpkgs="lorax-lmc-novirt lorax-templates-rhel"
 ninstpkgs=""
 cnt=0
 
@@ -46,23 +46,17 @@ if [ ! -d ${logdir} ]; then
   mkdir -p ${logdir}
 fi
 
-if [ ! -d ${tmpldir} ]; then
-  cp -aR /usr/share/lorax/templates.d/80-rhel/ live-tmpl/
-  patch -u -p1 -d live-tmpl < c8-live-tmpl.patch
-fi
-
 livemedia-creator \
 --ks ${kickstart} \
---lorax-templates ${tmpldir} \
 --no-virt \
 --iso-only \
 --make-iso \
 --nomacboot \
---volid CentOS-8-1905 \
---iso-name "CentOS-8-x86_64-1905-LiveGNOME.iso" \
---title "CentOS Live Linux 8.0 1905 (JP)" \
+--volid CentOS-8-1911 \
+--iso-name "CentOS-8-x86_64-1911-LiveGNOME.iso" \
+--title "CentOS Live Linux 8.1 1911 (JP)" \
 --project "CentOS Live Linux" \
---releasever "8\.0\ 1905\ \(JP\)" \
+--releasever "8\.1\ 1911\ \(JP\)" \
 --fs-label "CentOS-8-x86_64" \
 --extra-boot-args noswap \
 --tmp ${temp} \

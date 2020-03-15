@@ -9,9 +9,9 @@
 - HDD などを処分するとき、論理的に完全削除を行いたい場合など
 
 ## 要件
-- CentOS 8またはその他RHEL8互換OSが稼働しているマシン
+- CentOS Linux 8.1 またはその他 RHEL8.1 互換 OS が稼働しているマシン
 - root権限
-- git、lorax-lmc-novirt、lorax-templates-rhel、patch、および依存パッケージがインストールされていること
+- git、lorax-lmc-novirt、lorax-templates-rhel、および依存パッケージがインストールされていること
 
 ## 実行例
 ```
@@ -21,7 +21,7 @@
 ```
 
 ## イメージ
-- [イメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.0-20191226)
+- [イメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.1-20200315)
 
 ## ライセンス
 
