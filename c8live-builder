@@ -52,11 +52,11 @@ livemedia-creator \
 --iso-only \
 --make-iso \
 --nomacboot \
---volid CentOS-8-1911 \
---iso-name "CentOS-8-x86_64-1911-LiveGNOME.iso" \
---title "CentOS Live Linux 8.1 1911 (JP)" \
+--volid CentOS-8-2004 \
+--iso-name "CentOS-8-x86_64-2004-LiveGNOME.iso" \
+--title "CentOS Live Linux 8.2 2004 (JP)" \
 --project "CentOS Live Linux" \
---releasever "8\.1\ 1911\ \(JP\)" \
+--releasever "8\.2\ 2004\ \(JP\)" \
 --fs-label "CentOS-8-x86_64" \
 --extra-boot-args noswap \
 --tmp ${temp} \

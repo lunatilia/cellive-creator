@@ -20,8 +20,8 @@
 # ./c8live-builder centos-8-live-gnome.cfg 
 ```
 
-## イメージ
-- [イメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.1-20200315)
+## ディスクイメージ
+- [ディスクイメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.2-20200629)
 
 ## ライセンス
 
