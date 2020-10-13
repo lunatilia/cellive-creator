@@ -1,19 +1,27 @@
 # CentOS Linux 8 LiveGNOME 日本語UI kickstart
 
 ## 内容
+
 次の CentOS 8 Liveメディア を作成するための kickstart および簡易構築スクリプトです。
+
 1. CentOS 8 LiveGNOME 日本語UI版
 
 ## 用途
+
 - オリジナルの専用Liveメディアなどを作成する際のベース
 - HDD などを処分するとき、論理的に完全削除を行いたい場合など
 
 ## 要件
-- CentOS Linux 8.1 またはその他 RHEL8.1 互換 OS が稼働しているマシン
+
+- CentOS Linux 8.2.2004 またはその他 RHEL8.2 互換 OS が稼働しているマシン
 - root権限
 - git、lorax-lmc-novirt、lorax-templates-rhel、および依存パッケージがインストールされていること
 
 ## 実行例
+
+この実行例は CentOS 8.2.2004 (Minimal Install) に git、lorax-lmc-novirt、lorax-templates-rhel のみをインストールした状態で実行しています。
+
+
 ```
 # git clone https://github.com/lunatilia/centos-8-livemedia-japanese
 # cd centos-8-livemedia-japanese
@@ -21,7 +29,7 @@
 ```
 
 ## ディスクイメージ
-- [ディスクイメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.2-20200629)
+- [ディスクイメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.2-20201014)
 
 ## ライセンス
 
