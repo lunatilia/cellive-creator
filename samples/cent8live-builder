@@ -1,0 +1,70 @@
+#!/bin/sh
+
+# check args count
+if [ $# -ne 1 ]; then
+  echo "Usage : $0 <kickstart file>"
+  exit
+fi
+
+# check require packages
+reqpkgs="lorax-lmc-novirt lorax-templates-rhel"
+ninstpkgs=""
+cnt=0
+
+for pkg in ${reqpkgs}
+do
+  rpm -q ${pkg} > /dev/null
+  if [ $? -ne 0 ]; then
+    ninstpkgs="${ninstpkgs}${pkg} "
+    cnt=`expr ${cnt} "+" 1`
+  fi
+done
+
+if [ ${cnt} -ne 0 ]; then
+  echo "require packages: ${ninstpkgs}"
+  exit
+fi
+
+# check kickstart files
+kickstart=${1}
+if [ ! -f ${kickstart} ]; then
+  echo "${kickstart} is not exist."
+  exit
+fi
+
+logfile=${0}-`date +%Y%m%d%H%M%S`.log
+logdir=logs
+temp=tmp
+resultdir=results
+tmpldir=live-tmpl
+
+if [ ! -d ${temp} ]; then
+  mkdir -p ${temp}
+fi
+
+if [ ! -d ${logdir} ]; then
+  mkdir -p ${logdir}
+fi
+
+livemedia-creator \
+--ks ${kickstart} \
+--no-virt \
+--iso-only \
+--make-iso \
+--nomacboot \
+--volid CentOS-8-2004 \
+--iso-name "CentOS-8-x86_64-2011-LiveGNOME.iso" \
+--title "CentOS Linux Live 8.3 2011 (JP)" \
+--project "CentOS Linux Live" \
+--releasever "8\.3\ 2011\ \(JP\)" \
+--fs-label "CentOS-8-x86_64" \
+--extra-boot-args noswap \
+--tmp ${temp} \
+--resultdir ./${resultdir} \
+--logfile ${logdir}/${logfile}
+
+ret=$?
+if [ ${ret} -ne 0 ]; then
+  echo "livemedia-creator is failed"
+  exit
+fi

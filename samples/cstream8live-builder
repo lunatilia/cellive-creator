@@ -52,12 +52,12 @@ livemedia-creator \
 --iso-only \
 --make-iso \
 --nomacboot \
---volid CentOS-8-2004 \
---iso-name "CentOS-8-x86_64-2004-LiveGNOME.iso" \
---title "CentOS Live Linux 8.2 2004 (JP)" \
---project "CentOS Live Linux" \
---releasever "8\.2\ 2004\ \(JP\)" \
---fs-label "CentOS-8-x86_64" \
+--volid CentOS-Stream-8 \
+--iso-name "CentOS-Stream-8-x86_64-LiveGNOME.iso" \
+--title "CentOS Stream Linux Live 8 (JP)" \
+--project "CentOS Stream Linux Live" \
+--releasever "8 \(JP\)" \
+--fs-label "CentOS-Stream-8-x86_64" \
 --extra-boot-args noswap \
 --tmp ${temp} \
 --resultdir ./${resultdir} \

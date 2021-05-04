@@ -1,10 +1,13 @@
-# CentOS Linux 8 LiveGNOME 日本語UI kickstart
+# Enterprise Linux(EL) 8 LiveGNOME 日本語UI kickstart
 
 ## 内容
 
-次の CentOS 8 Liveメディア を作成するための kickstart および簡易構築スクリプトです。
+次の EL 8 Liveメディア を作成するための kickstart および構築用のサンプルスクリプトです。
 
 1. CentOS 8 LiveGNOME 日本語UI版
+2. CentOS Stream 8 LiveGNOME 日本語UI版
+3. AlmaLinux 8 LiveGNOME 日本語UI版
+4. Rocky Linux 8 RC1 LiveGNOME 日本語UI版 **TEST RELEASE**
 
 ## 用途
 
@@ -13,27 +16,55 @@
 
 ## 要件
 
-- CentOS Linux 8.2.2004 またはその他 RHEL8.2 互換 OS が稼働しているマシン
+- CentOS Linux 8.3.2011 またはその他 RHEL8.3 互換 OS が稼働しているマシン
 - root権限
 - git、lorax-lmc-novirt、lorax-templates-rhel、および依存パッケージがインストールされていること
 
 ## 実行例
 
-この実行例は CentOS 8.2.2004 (Minimal Install) に git、lorax-lmc-novirt、lorax-templates-rhel のみをインストールした状態で実行しています。
-
+この実行例は CentOS 8.3.2011 (Minimal Install) に git、lorax-lmc-novirt、lorax-templates-rhel のみをインストールした状態で実行しています。
 
 ```
-# git clone https://github.com/lunatilia/centos-8-livemedia-japanese
-# cd centos-8-livemedia-japanese
-# ./c8live-builder centos-8-live-gnome.cfg 
+# git clone https://github.com/lunatilia/el8-livemedia-japanese
+# cd el8-livemedia-japanese
+```
+
+- CentOS 8 の場合
+
+```
+# mv samples/cent8live-builder .
+# ./cent8live-builder kickstarts/centos-8-live-gnome.cfg 
+```
+
+- CentOS Stream 8 の場合
+
+```
+# mv samples/cstream8live-builder .
+# ./cstream8live-builder kickstarts/centos-stream-8-live-gnome.cfg
+```
+
+- AlmaLinux 8 の場合
+
+```
+# mv samples/alma8live-builder .
+# ./alma8live-builder kickstarts/almalinux-8-live-gnome.cfg
+```
+
+- Rocky Linux 8 の場合
+
+```
+# mv samples/rocky8live-builder .
+# ./rocky8live-builder kickstarts/rocky-8-live-gnome.cfg
 ```
 
 ## ディスクイメージ
-- [ディスクイメージのダウンロード](https://github.com/lunatilia/centos-8-livemedia-japanese/releases/tag/1.0.2-20201014)
+
+- [ディスクイメージのダウンロード](https://github.com/lunatilia/el8-livemedia-japanese/releases/tag/1.1.0-20210505)
+  - AlmaLinux、Rocky Linux のOSイメージは除外
 
 ## ライセンス
 
-[GNU GPLv2](https://github.com/lunatilia/centos-8-livemedia-japanese/blob/master/LICENSE) (The CentOS Projectのデフォルトライセンス)
+[GNU GPLv2](https://github.com/lunatilia/el8-livemedia-japanese/blob/main/LICENSE) (The CentOS Projectのデフォルトライセンス)
 
 ## 参考
 
