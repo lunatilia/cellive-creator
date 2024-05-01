@@ -1,0 +1,123 @@
+#!/bin/bash
+
+print_usage() {
+    echo "Usage: $0 --distribution <distribution_name> --releasever <version_number> --config <kickstart_file>"
+    echo ""
+    echo "Example: $0 --distribution \"CentOS Stream\" --releasever 8 --config centos.ks"
+    echo "         $0 --distribution \"AlmaLinux\" --releasever "9.2" --config almalinux.ks"
+    echo "         $0 --distribution \"Rocky Linux\" --releasever "8.8" --config rockylinux.ks"
+    echo "         $0 --distribution \"MIRACLE LINUX\" --releasever "8.6" --config miraclelinux.ks"
+    systemctl poweroff
+}
+
+get_arguments() {
+    local OPTS=$(getopt -o d:r:c: -l distribution:,releasever:,config: -- "$@")
+    if [ $? != 0 ] ; then echo "Failed parsing options." >&2 ; usage; exit 1 ; fi
+    eval set -- "$OPTS"
+
+    while true; do
+        case "$1" in
+            -d|--distribution)
+                release_name=$2
+                shift 2
+                ;;
+            -r|--releasever)
+                version=$2
+                shift 2
+                ;;
+            -c|--config)
+                kickstart=$2
+                shift 2
+                ;;
+            --)
+                shift
+                break
+                ;;
+            *)
+                print_usage
+                ;;
+        esac
+    done
+
+    if [ -z "$release_name" ] || [ -z "$version" ] || [ -z "$kickstart" ] ; then
+        print_usage
+    fi
+}
+
+prepare_entrypoint() {
+    logdir="./log"
+    temp="./tmp"
+    resultdir="./result"
+    release="/release"
+
+    mkdir -p ${temp} ${logdir}
+
+    major_version=${version%%.*}
+
+    case "${release_name}" in
+        "CentOS Stream") 
+            release_name="CentOS-Stream"
+            project="CentOS Stream"
+            releasever="${major_version} Live \(JP\)"
+            ;;
+        "MIRACLE LINUX")
+            release_name="MIRACLELINUX"
+            project="MIRACLE LINUX"
+            releasever="${version//./\\.} Live \(JP\)"
+            ;;
+        "AlmaLinux") 
+            release_name="AlmaLinux"
+            project="AlmaLinux"
+            releasever="${version//./\\.} Live \(JP\)"
+            ;;
+        "Rocky Linux") 
+            release_name="Rocky"
+            project="Rocky Linux"
+            releasever="${version//./\\.} Live \(JP\)"
+            ;;
+        *) 
+            echo "Error: Invalid distribution name. Please use one of the following: CentOS Stream, MIRACLE LINUX, AlmaLinux, Rocky Linux."
+            systemctl poweroff
+            ;;
+    esac
+
+    volid="${release_name}-${major_version}"
+    iso_name="${release_name}-${version}-x86_64-Live-$(date +%Y%m%d%H%M%S).iso"
+    fs_label="${release_name}-${major_version}-x86_64"
+
+    logfile="${0}-$(date +%Y%m%d%H%M%S).log"
+}
+
+run_livemedia_creator() {
+    livemedia-creator \
+    --ks ${kickstart} \
+    --no-virt \
+    --iso-only \
+    --make-iso \
+    --nomacboot \
+    --volid ${volid} \
+    --iso-name "${iso_name}" \
+    --project "${project}" \
+    --releasever "${releasever}" \
+    --fs-label "${fs_label}" \
+    --extra-boot-args noswap \
+    --tmp ${temp} \
+    --resultdir ./${resultdir} \
+    --logfile ${logdir}/${logfile}
+
+    if [ $? -ne 0 ]; then
+        echo "livemedia-creator failed."
+        systemctl poweroff
+    fi
+
+    if [ -f ${resultdir}/${iso_name} ]; then
+        mv "${resultdir}/${iso_name}" "${release}"
+    fi
+}
+
+# Main Execution
+get_arguments "$@"
+prepare_entrypoint
+run_livemedia_creator
+
+systemctl poweroff

@@ -1,0 +1,11 @@
+--- a/entrypoint.sh
++++ b/entrypoint.sh
+@@ -42,7 +42,7 @@
+ WantedBy=multi-user.target
+ EOF
+ 
+-systemctl mask systemd-firstboot.service systemd-udevd.service systemd-modules-load.service
++#systemctl mask systemd-firstboot.service systemd-udevd.service systemd-modules-load.service
+ systemctl unmask systemd-logind
+ systemctl enable docker-entrypoint.service
+ 
