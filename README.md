@@ -18,6 +18,7 @@ podman build -t cellive-creator:el9 docker/
 ### Build the CentOS Stream 9 LiveOS
 
 ```
+mkdir release
 podman run --privileged --rm -it \
 -v /lib/modules:/lib/modules:ro \
 -v /dev:/dev \
